@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {View, Text, StyleSheet, ActivityIndicator} from 'react-native';
 import {createHttpClient} from '../services/httpClient';
-import {scaleFontSize, scaleWidth, scaleHeight} from '../utils/scaling';
+import {scaleFontSize, scaleHeight} from '../utils/scaling';
 
 interface Joke {
   id: number;

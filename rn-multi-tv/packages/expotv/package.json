@@ -11,7 +11,8 @@
     "lint": "expo lint",
     "prebuild": "expo prebuild --clean",
     "prebuild:tv": "EXPO_TV=1 expo prebuild --clean",
-    "deploy": "npx expo export -p web && npx eas-cli@latest deploy"
+    "deploy": "npx expo export -p web && npx eas-cli@latest deploy",
+    "typecheck": "tsc -p tsconfig.typecheck.json"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
@@ -33,12 +34,15 @@
     "react-native-reanimated": "~4.1.1",
     "react-native-safe-area-context": "~5.6.0",
     "react-native-screens": "~4.16.0",
+    "react-native-video": "^6.19.3",
     "react-native-web": "^0.21.0",
     "react-native-worklets": "0.5.1"
   },
   "devDependencies": {
     "@react-native-tvos/config-tv": "^0.1.4",
     "@types/react": "~19.1.10",
+    "eslint": "^9.25.0",
+    "eslint-config-expo": "~10.0.0",
     "typescript": "~5.9.2"
   },
   "expo": {

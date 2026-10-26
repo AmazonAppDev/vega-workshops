@@ -1,5 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {View, Text, Image, Pressable, StyleSheet} from 'react-native';
+import {Text, Image, Pressable, StyleSheet} from 'react-native';
 import {scaleFontSize, scaleWidth, scaleHeight} from '../../utils/scaling';
 import {Movie} from '../../data/catalog';
 

@@ -7,19 +7,26 @@
 import 'react-native';
 import {fireEvent, render} from '@testing-library/react-native';
 import * as React from 'react';
+import {featuredContent} from '@multitv/shared';
 
 import {App} from '../src/App';
 
-describe('Template App Snapshot tests', () => {
-  it('Initial App screen', () => {
+describe('App', () => {
+  it('renders the streaming home screen', () => {
     const screen = render(<App />);
-    expect(screen).toMatchSnapshot();
+
+    expect(screen.getByTestId('hero')).toBeTruthy();
+    featuredContent.forEach(item => {
+      expect(screen.getByTestId(`content-card-${item.id}`)).toBeTruthy();
+    });
   });
 
-  it('App screen after link press', () => {
+  it('opens the player when a card is selected', () => {
     const screen = render(<App />);
-    const button = screen.getByTestId('sampleLink');
-    fireEvent.press(button);
-    expect(screen).toMatchSnapshot();
+
+    fireEvent.press(screen.getByTestId(`content-card-${featuredContent[0].id}`));
+
+    expect(screen.getByTestId('player-view')).toBeTruthy();
+    expect(screen.getByTestId('mock-video')).toBeTruthy();
   });
 });

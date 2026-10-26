@@ -1,121 +1,81 @@
 import React, {useState, useCallback} from 'react';
-import {StyleSheet, Text, ImageBackground, View} from 'react-native';
-import {Tile} from '../components/Tile';
-import {FocusRow} from '../components/FocusRow/FocusRow';
-import {MovieList} from '../components/MovieList/MovieList';
-import {tiles} from '../data/tiles';
-import {ApiDemo} from '../components/ApiDemo';
-import {IconReactNativeAnimated} from '../components/IconReactNativeAnimated/IconReactNativeAnimated';
-import {Header} from '../components/Header/Header';
+import {StyleSheet, Text, View} from 'react-native';
+import {ContentCard} from '../components/ContentCard';
+import {Hero} from '../components/Hero';
+import {PlayerView} from '../components/player/PlayerView';
+import {ContentItem, featuredContent} from '../data/content';
+import {actionSafe, titleSafe} from '../theme/safeZones';
+import {scaleFontSize, scaleHeight} from '../utils/scaling';
 
-import {scaleFontSize, scaleWidth} from '../utils/scaling';
+// A tiny state machine instead of a navigation framework:
+// 'browse' shows the hero and shelf, 'player' shows the video.
+type Mode = 'browse' | 'player';
 
 export const HomeScreen = () => {
-  const [activeTileId, setActiveTileId] = useState<string>('home');
-  const [focusedTileId, setFocusedTileId] = useState<string | null>('home');
+  const [mode, setMode] = useState<Mode>('browse');
+  const [focusedId, setFocusedId] = useState(featuredContent[0].id);
 
-  const activeTile = tiles.find(t => t.id === activeTileId);
+  const focusedItem =
+    featuredContent.find(item => item.id === focusedId) ?? featuredContent[0];
 
-  const handleTileFocus = useCallback((tileId: string) => {
-    setActiveTileId(tileId);
-    setFocusedTileId(tileId);
+  const handleFocus = useCallback((item: ContentItem) => {
+    setFocusedId(item.id);
   }, []);
 
-  const handleTileBlur = useCallback((tileId: string) => {
-    setFocusedTileId(prev => (prev === tileId ? null : prev));
+  const handleSelect = useCallback((item: ContentItem) => {
+    setFocusedId(item.id);
+    setMode('player');
   }, []);
 
-  const renderFocusedContent = () => {
-    if (activeTileId === 'home') {
-      return <Header />;
-    }
+  const handleExit = useCallback(() => setMode('browse'), []);
 
-    if (activeTileId === 'movies') {
-      return <MovieList />;
-    }
-
-    return (
-      <>
-        <Text style={styles.focusedTitle}>{activeTile?.label}</Text>
-        {activeTileId === 'api-demo' && <ApiDemo />}
-        {activeTileId === 'animation' && (
-          <View style={styles.animationWrapper}>
-            <IconReactNativeAnimated />
-          </View>
-        )}
-        {activeTileId !== 'api-demo' && activeTileId !== 'animation' && (
-          <Text style={styles.focusedDescription}>
-            {activeTile?.description}
-          </Text>
-        )}
-      </>
-    );
-  };
+  if (mode === 'player') {
+    return <PlayerView item={focusedItem} onExit={handleExit} />;
+  }
 
   return (
-    <ImageBackground
-      source={require('../assets/background.png')}
-      style={styles.background}>
-      <View style={styles.headerArea}>{renderFocusedContent()}</View>
-      <FocusRow
-        style={styles.tileRowScroll}
-        contentContainerStyle={styles.tileRowContent}>
-        {tiles.map(tile => (
-          <Tile
-            key={tile.id}
-            id={tile.id}
-            label={tile.label}
-            icon={tile.icon}
-            isFocused={focusedTileId === tile.id}
-            isActive={focusedTileId !== tile.id && activeTileId === tile.id}
-            onFocus={handleTileFocus}
-            onBlur={handleTileBlur}
-            testID={`tile-${tile.id}`}
-            accessibilityLabel={tile.accessibilityLabel}
-            hasTVPreferredFocus={tile.id === 'home'}
-          />
-        ))}
-      </FocusRow>
-    </ImageBackground>
+    <View style={styles.container} testID="browse-screen">
+      <Hero item={focusedItem} />
+      <View style={styles.shelf}>
+        <Text style={styles.shelfTitle}>Featured</Text>
+        <View style={styles.row}>
+          {featuredContent.map(item => (
+            <ContentCard
+              key={item.id}
+              item={item}
+              onFocus={handleFocus}
+              onSelect={handleSelect}
+              // The first card on launch, the last selected card on return.
+              hasTVPreferredFocus={item.id === focusedId}
+            />
+          ))}
+        </View>
+      </View>
+    </View>
   );
 };
 
-
 const styles = StyleSheet.create({
-  background: {
+  container: {
     flex: 1,
-    padding: scaleWidth(160),
+    backgroundColor: '#0B0F1A',
   },
-  headerArea: {
-    flex: 3,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
+  shelf: {
+    flex: 1,
+    paddingHorizontal: titleSafe.horizontal,
+    paddingBottom: actionSafe.vertical,
   },
-  focusedTitle: {
+  shelfTitle: {
     color: '#FFFFFF',
-    fontSize: scaleFontSize(150),
-    lineHeight: scaleFontSize(140),
+    fontSize: scaleFontSize(38),
     fontWeight: 'bold',
-    width: scaleWidth(700),
+    marginTop: scaleHeight(16),
+    marginBottom: scaleHeight(20),
   },
-  focusedDescription: {
-    color: '#FFFFFF',
-    fontSize: scaleFontSize(60),
-    lineHeight: scaleFontSize(80),
-    flex: 1,
-  },
-  tileRowScroll: {
-    flex: 1,
-  },
-  tileRowContent: {
-    flexGrow: 1,
+  row: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
     justifyContent: 'space-between',
-  },
-  animationWrapper: {
-    flex: 1,
-    alignItems: 'flex-end',
-    justifyContent: 'center',
+    // Room for the 1.08 focus scale so focused cards aren't clipped.
+    paddingVertical: scaleHeight(12),
   },
 });

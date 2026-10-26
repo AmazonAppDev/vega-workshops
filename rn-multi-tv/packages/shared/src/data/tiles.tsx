@@ -5,14 +5,11 @@ export interface TileData {
   id: string;
   label: string;
   accessibilityLabel: string;
-  description: string | React.ReactNode;
+  description?: string | React.JSX.Element;
   icon: ImageSourcePropType;
 }
 
 const descStyles = StyleSheet.create({
-  underline: {
-    textDecorationLine: 'underline',
-  },
   bold: {
     fontWeight: 'bold',
   },
@@ -23,15 +20,13 @@ export const tiles: TileData[] = [
     id: 'home',
     label: 'Home',
     accessibilityLabel: 'Home',
-    description:
-      'Welcome to Vega. Select one of the options below to start your journey.',
     icon: require('../assets/home.png'),
   },
   {
-    id: 'api-demo',
-    label: 'API\nDemo',
-    accessibilityLabel: 'API Demo',
-    description: 'Press select to fetch a random joke from the API.',
+    id: 'animation',
+    label: 'Animated\nDemo',
+    accessibilityLabel: 'Animated Demo',
+    description: 'A Lottie animation demo powered by React Native.',
     icon: require('../assets/get-started.png'),
   },
   {
@@ -39,14 +34,14 @@ export const tiles: TileData[] = [
     label: 'Movies',
     accessibilityLabel: 'Movies',
     description:
-      'A horizontal list of movies from a local catalog. FlatList on Expo TV and web, Carousel on Vega.',
+      'A horizontal list of movies fetched from a public endpoint. FlatList on Expo TV and web, Carousel on Vega.',
     icon: require('../assets/debug.png'),
   },
   {
-    id: 'animation',
-    label: 'Animated\nDemo',
-    accessibilityLabel: 'Animated Demo',
-    description: 'A Lottie animation demo powered by React Native.',
+    id: 'api-demo',
+    label: 'API\nDemo',
+    accessibilityLabel: 'API Demo',
+    description: 'Press select to fetch a random joke from the API.',
     icon: require('../assets/learn-more.png'),
   },
 ];
