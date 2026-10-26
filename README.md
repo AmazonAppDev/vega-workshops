@@ -29,22 +29,11 @@ git clone https://github.com/<your-username>/vega-workshops.git
 cd vega-workshops
 ```
 
-### 2. Pick a workshop for your use case
-
-The workshops are independent, so do one, some, or all of them:
-
-| If you... | Start with |
-|---|---|
-| Are new to Vega, or want one React Native codebase for Fire TV, Android TV, Apple TV, and web | [Multi-TV Hello World](./rn-multi-tv/) |
-| Already have a Vega app on React Native 0.72 and want to move to 0.83 | [Upgrade to React Native 0.83](./rn-0.83-upgrade/) |
-| Want to see what React 19, the React Compiler, and Hermes v1 bring to Vega | [Upgrade to React Native 0.83](./rn-0.83-upgrade/), Steps 2 to 4 |
-| Want to do them all | Multi-TV Hello World first to learn the Vega basics, then Upgrade to React Native 0.83 |
-
-### 3. Follow the steps
+### 2. Follow the steps
 
 Open the workshop's README and start at Step 0, which covers its exact prerequisites. Run every command from inside that workshop's folder (for example, `cd rn-multi-tv`). The Upgrade to React Native 0.83 workshop runs against your own Vega app or a separate sample app. Its Step 1 covers both options.
 
-## Branches
+### 3. Compare with the completed versions
 
 `main` holds the starting point for every workshop. Where a workshop has completed versions to compare against, they sit on branches prefixed with the workshop's folder name:
 
@@ -52,6 +41,12 @@ Open the workshop's README and start at Step 0, which covers its exact prerequis
 |---|---|
 | [`rn-multi-tv/final-app`](https://github.com/AmazonAppDev/vega-workshops/tree/rn-multi-tv/final-app) | Multi-TV Hello World with all workshop steps applied |
 | [`rn-multi-tv/final-app-next-steps`](https://github.com/AmazonAppDev/vega-workshops/tree/rn-multi-tv/final-app-next-steps) | The final app plus the streaming TV experience from Next steps |
+
+Check one out to see the finished code, or diff it against your work:
+
+```bash
+git diff origin/rn-multi-tv/final-app -- rn-multi-tv
+```
 
 ## Before you start
 
