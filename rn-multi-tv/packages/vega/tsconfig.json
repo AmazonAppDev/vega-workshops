@@ -1,0 +1,10 @@
+{
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "types": ["jest", "@amazon-devices/react-native-kepler"],
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": false
+  },
+  "include": ["src/**/*", "test/**/*", "index.js"],
+  "exclude": ["node_modules", "build", "dist"]
+}

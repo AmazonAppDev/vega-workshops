@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["ES2020"],
+    "jsx": "react-native",
+    "paths": {
+      "react-native": ["../vega/node_modules/react-native"],
+      "react": ["../vega/node_modules/@types/react"],
+      "@amazon-devices/*": ["../vega/node_modules/@amazon-devices/*"],
+      "lottie-react-native": ["../vega/node_modules/@amazon-devices/lottie-react-native"]
+    },
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "include": ["index.ts", "src/**/*"],
+  "exclude": ["node_modules"]
+}

@@ -7,7 +7,16 @@ Hands-on workshops for building and upgrading React Native apps on Vega, the OS 
 | Workshop | What you'll learn |
 |---|---|
 | [Upgrade to React Native 0.83](./rn-0.83-upgrade/) | Upgrade a Vega app from RN 0.72 to 0.83 with the Amazon Devices Builder Tools MCP and an AI coding assistant. Then see the React Compiler, React Native DevTools, and Hermes v1 in action. |
-| Multi-TV Hello World *(coming soon)* | Build a React Native TV app that runs on Fire TV (Vega), Android TV, Apple TV, and the web from one shared codebase. |
+| [Multi-TV Hello World](./rn-multi-tv/) | Build a React Native TV app that runs on Fire TV (Vega), Android TV, Apple TV, and the web from one shared codebase, then compare `FlatList` with the Vega Carousel on a real device. |
+
+## Branches
+
+`main` holds the starting point for every workshop. Where a workshop has completed versions to compare against, they sit on branches prefixed with the workshop's folder name:
+
+| Branch | Contents |
+|---|---|
+| [`rn-multi-tv/final-app`](https://github.com/AmazonAppDev/vega-workshops/tree/rn-multi-tv/final-app) | Multi-TV Hello World with all workshop steps applied |
+| [`rn-multi-tv/final-app-next-steps`](https://github.com/AmazonAppDev/vega-workshops/tree/rn-multi-tv/final-app-next-steps) | The final app plus the streaming TV experience from Next steps |
 
 ## Before you start
 
