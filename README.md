@@ -6,7 +6,7 @@ Hands-on workshops for building and upgrading React Native apps on Vega, the OS 
 
 | Workshop | What you'll learn |
 |---|---|
-| [Upgrade to React Native 0.83](./vega-rn-0.83-upgrade/) | Upgrade a Vega app from RN 0.72 to 0.83 with the Amazon Devices Builder Tools MCP and an AI coding assistant. Then see the React Compiler, React Native DevTools, and Hermes v1 in action. |
+| [Upgrade to React Native 0.83](./rn-0.83-upgrade/) | Upgrade a Vega app from RN 0.72 to 0.83 with the Amazon Devices Builder Tools MCP and an AI coding assistant. Then see the React Compiler, React Native DevTools, and Hermes v1 in action. |
 | Multi-TV Hello World *(coming soon)* | Build a React Native TV app that runs on Fire TV (Vega), Android TV, Apple TV, and the web from one shared codebase. |
 
 ## Before you start
