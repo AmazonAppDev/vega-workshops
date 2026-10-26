@@ -1,11 +1,6 @@
-// The shared package has no React Native install of its own, so tests use the
-// React Native (and React) that the Vega workspace installs.
-const vegaNodeModules = '<rootDir>/../vega/node_modules';
-
 module.exports = {
-  preset: `${vegaNodeModules}/react-native`,
+  preset: '@testing-library/react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
-  modulePaths: [vegaNodeModules],
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
   },
